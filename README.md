@@ -1,3 +1,5 @@
+# Mahjong-react
+
 Implement logic and UI for Mahjong-like game.
 The objective of the game is to collect cards until no card is hidden. User picks a
 card and if its value matches the value of a previously selected card, both cards
