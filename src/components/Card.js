@@ -1,4 +1,4 @@
-function Card({item, id, handleClick}){
+const Card = ({item, id, handleClick}) => {
     const itemClass = item.stat ? " active " + item.stat : ""
 
     return (

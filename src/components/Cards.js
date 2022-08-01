@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Card from './Card'
 
-function Cards(){
+const Cards = () => {
     const [items, setItems] = useState([
         { id: 1, img: '/img/html.png', stat: "" },
         { id: 1, img: '/img/html.png', stat: "" },
@@ -42,7 +42,7 @@ function Cards(){
         }
     }
 
-    function handleClick(id){
+    const handleClick = (id) => {
         if(prev === -1){
             items[id].stat = "active"
             setItems([...items])
