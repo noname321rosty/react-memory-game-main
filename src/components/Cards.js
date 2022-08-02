@@ -1,35 +1,70 @@
 import { useState } from 'react'
 import Card from './Card'
+// import { v4 as uuidv4 } from 'uuid';
 
 const Cards = () => {
-    const [items, setItems] = useState([
-        { id: 1, img: '/img/html.png', stat: "" },
-        { id: 1, img: '/img/html.png', stat: "" },
-        { id: 2, img: '/img/css.png', stat: "" },
-        { id: 2, img: '/img/css.png', stat: "" },
-        { id: 3, img: '/img/js.png', stat: "" },
-        { id: 3, img: '/img/js.png', stat: "" },
-        { id: 4, img: '/img/scss.png', stat: "" },
-        { id: 4, img: '/img/scss.png', stat: "" },
-        { id: 5, img: '/img/react.png', stat: "" },
-        { id: 5, img: '/img/react.png', stat: "" },
-        { id: 6, img: '/img/vue.png', stat: "" },
-        { id: 6, img: '/img/vue.png', stat: "" },
-        { id: 7, img: '/img/angular.png', stat: "" },
-        { id: 7, img: '/img/angular.png', stat: "" },
-        { id: 8, img: '/img/nodejs.png', stat: "" },
-        { id: 8, img: '/img/nodejs.png', stat: "" }
-    ].sort(() => Math.random() - 0.5))
+    const [items, setItems] = useState([{
+            id: 1, // if and had the chance to use uuidv4() I would <3 u !
+            img: '/img/html.png',
+            stat: ""
+        },
+        {
+            id: 2,
+            img: '/img/css.png',
+            stat: ""
+        },
+        {
+            id: 3,
+            img: '/img/js.png',
+            stat: ""
+        },
+        {
+            id: 4,
+            img: '/img/scss.png',
+            stat: ""
+        },
+        {
+            id: 5,
+            img: '/img/react.png',
+            stat: ""
+        },
+        {
+            id: 6,
+            img: '/img/vue.png',
+            stat: ""
+        },
+        {
+            id: 7,
+            img: '/img/angular.png',
+            stat: ""
+        },
+        {
+            id: 8,
+            img: '/img/nodejs.png',
+            stat: ""
+        },
+    ])
 
+    if (items.length === 8) { 
+        const nums = new Set();
+        while(nums.size !== 8) {
+            nums.add(Math.floor(Math.random() * 10) + 1);
+        }
+        setItems(items.map(value => [...nums][value.id]))
+        const itemsCopy = JSON.parse(JSON.stringify(items));
+        const newItems = items.concat(itemsCopy).sort(() => Math.random() - 0.5)
+        setItems(newItems);
+    }
+    
     const [prev, setPrev] = useState(-1)
 
-    function check(current){
-        if(items[current].id === items[prev].id){
+    const check = (current) => {
+        if (items[current].id === items[prev].id) {
             items[current].stat = "correct"
             items[prev].stat = "correct"
             setItems([...items])
             setPrev(-1)
-        }else{
+        } else {
             items[current].stat = "wrong"
             items[prev].stat = "wrong"
             setItems([...items])
@@ -43,11 +78,11 @@ const Cards = () => {
     }
 
     const handleClick = (id) => {
-        if(prev === -1){
+        if (prev === -1) {
             items[id].stat = "active"
             setItems([...items])
             setPrev(id)
-        }else{
+        } else {
             check(id)
         }
     }
